@@ -1,8 +1,8 @@
 {
-  "name": "ProCleaning",
-  "short_name": "ProCleaning",
+  "name": "Netto Pro Maroc Casablanca",
+  "short_name": "Netto Pro Maroc",
   "start_url": "/",
-  "description": "Specialized, efficient, and thorough cleaning services",
+  "description": "Services de nettoyage professionnel à Casablanca pour maisons, bureaux, commerces et remises en état.",
   "display_override": ["window-control-overlay", "minimal-ui"],
   "orientation": "portrait",
   "theme_color": "#ffffff",
