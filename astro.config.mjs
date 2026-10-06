@@ -8,7 +8,7 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://pro-cleaning-eta.vercel.app/',
+	site: 'https://casablanca.nettopromaroc.online/',
 	vite: {
 		plugins: [tailwindcss()],
 	},

@@ -1,98 +1,29 @@
-> ⭐️ Love this theme? Star it to support our work!
+# Netto Pro Maroc Casablanca
 
-# ProCleaning: Cleaning services website landing page
+Static Astro website for `https://casablanca.nettopromaroc.online`, based on the MIT-licensed ProCleaning template.
 
-A modern, responsive landing page template for cleaning service businesses. Built with Astro and Tailwind CSS, ProCleaning helps cleaning companies showcase their services, team, testimonials, and contact information with a fast, professional, and conversion-focused design.
+## Stack
 
-> ⚡ Built with Astro 6, Tailwind CSS 4 & DaisyUI, and Markdown — optimized for performance, SEO, and simplicity.
+- Astro 6
+- Tailwind CSS 4 + DaisyUI
+- Markdown/MDX content collections
+- Static `dist/` output served by Caddy
 
-![Template Preview](https://github.com/anastasiiaxfr/ProCleaning/blob/main/public/theme/og_1200x630.jpg)
+## Local commands
 
-## Demo
-
-- ✨ [Live Demo](https://pro-cleaning-eta.vercel.app/)
-- 💨 [PageSpeed Insights Report](https://pagespeed.web.dev/analysis/https-pro-cleaning-eta-vercel-app/i1cp4fvfla?form_factor=mobile)
-- [Sitemap.xml](https://pro-cleaning-eta.vercel.app//sitemap-index.xml)
-- [Robots.txt](https://pro-cleaning-eta.vercel.app//robots.txt)
-- [Schema.org validator](https://search.google.com/test/rich-results/result?id=Xz43gQTsgKUxMJzb-N78WQ)
-- [RSS](https://pro-cleaning-eta.vercel.app/rss.xml)
-
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 99+/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and meta tags, Open Graph data, JSON-LD schema and PWA
-- ✅ Sitemap, robots.txt support
-- ✅ Markdown & MDX support
-- ✅ Fully responsive and accessible
-- ✅ Easily deploy to Vercel, Netlify, or Cloudflare Pages
-
-Pages:
-
-- home
-- contacts
-- team
-- team detail
-- service
-- service detail
-- blog
-- blog detail
-- 404 / 500
-
-## PWA support
-
-![pwa](https://github.com/anastasiiaxfr/ProCleaning/blob/main/public/theme/3.jpg)
-
-## Google pages speed
-
-![mobile](https://github.com/anastasiiaxfr/ProCleaning/blob/main/public/theme/1.jpg)
-![desktop](https://github.com/anastasiiaxfr/ProCleaning/blob/main/public/theme/2.jpg)
-
-## Open Graph Card
-
-![Facebook](https://github.com/anastasiiaxfr/ProCleaning/blob/main/public/theme/5.jpg)
-![Telegram](https://github.com/anastasiiaxfr/ProCleaning/blob/main/public/theme/4.jpg)
-
-Main color changed to Luminance color:
-[Luminance color](https://app.contrast-finder.org/result.html?foreground=%23FFF&background=%2336B864&ratio=4.5&isBackgroundTested=true&algo=Rgb&lang=uk)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```bash
+npm ci
+npm run build
+npm run preview
 ```
 
-## 🧞 Commands
+## Deployment
 
-All commands are run from the root of the project, from a terminal:
+Pushes to `main` run `.github/workflows/publish.yml`, SSH to the VPS, clone/update `/opt/casablanca.nettopromaroc.online`, build with `npm ci && npm run build`, then install a marked Caddy block serving `dist/`.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Required GitHub Actions configuration:
 
-## 👀 Want to learn more?
+- Secret: `DEPLOY_SSH_KEY`
+- Variables: `DEPLOY_HOST`, `DEPLOY_USER`, `SITE_DOMAIN`
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## 🛠 Credits
-
-Made with ❤️ by [anastasiiaxfr](https://github.com/anastasiiaxfr/ProCleaning)
-
-ProCleaning is inspired by the free [ProCleaning Theme](https://www.figma.com/community/file/1382254995439883455/cleaning-services-website-landing-page)
+Template credit: <https://github.com/anastasiiaxfr/ProCleaning>.

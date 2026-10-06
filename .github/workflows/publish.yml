@@ -1,0 +1,76 @@
+name: publish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+  DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+  SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+  SITE_DOMAIN: ${{ vars.SITE_DOMAIN || github.event.repository.name }}
+
+jobs:
+  build-and-publish:
+    name: Build and publish to VPS
+    runs-on: ubuntu-latest
+    concurrency:
+      group: publish-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Verify local build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Set up SSH
+        run: |
+          test -n "$DEPLOY_HOST"
+          test -n "$DEPLOY_USER"
+          test -n "$SSH_KEY"
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf 'Host deploy-vps\n  HostName %s\n  User %s\n  IdentityFile ~/.ssh/deploy_key\n  StrictHostKeyChecking accept-new\n' \
+            "$DEPLOY_HOST" "$DEPLOY_USER" > ~/.ssh/config
+
+      - name: Ensure remote checkout dir
+        run: |
+          ssh deploy-vps "sudo mkdir -p /opt/${SITE_DOMAIN} && sudo chown -R \$(whoami):\$(whoami) /opt/${SITE_DOMAIN}"
+
+      - name: Clone if missing, then build on VPS
+        run: |
+          ssh deploy-vps "set -e; \
+            if [ ! -d /opt/${SITE_DOMAIN}/.git ]; then \
+              git clone https://github.com/${GITHUB_REPOSITORY}.git /opt/${SITE_DOMAIN}; \
+            else \
+              cd /opt/${SITE_DOMAIN} && \
+              git remote set-url origin https://github.com/${GITHUB_REPOSITORY}.git && \
+              git fetch origin --prune && \
+              (git pull --ff-only origin main || git reset --hard origin/main); \
+            fi; \
+            cd /opt/${SITE_DOMAIN} && \
+            SITE_DOMAIN='${SITE_DOMAIN}' bash ./deploy/deploy-remote.sh"
+
+      - name: Verify live
+        run: |
+          for i in {1..18}; do
+            if curl -fsSI "https://${SITE_DOMAIN}/" >/dev/null; then
+              curl -fsSL "https://${SITE_DOMAIN}/" | grep -qi "Netto Pro Maroc"
+              curl -fsSI "https://${SITE_DOMAIN}/sitemap-index.xml" >/dev/null
+              curl -fsSI "https://${SITE_DOMAIN}/robots.txt" >/dev/null
+              echo "OK: https://${SITE_DOMAIN} is live"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "Site did not become reachable: https://${SITE_DOMAIN}/" >&2
+          exit 1

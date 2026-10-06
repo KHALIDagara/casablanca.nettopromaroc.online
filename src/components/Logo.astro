@@ -1,24 +1,9 @@
 ---
-import Image from "astro/components/Image.astro";
 const { mode = "light" } = Astro.props;
+const textClass = mode === "dark" ? "text-white" : "text-dark dark:text-white";
 ---
 
-<a href="/" class="logo">
-  <Image
-    src={mode == "light" ? `/img/logo.svg` : `/img/logo-w.svg`}
-    alt="logo"
-    width="204"
-    height="50"
-    fetchpriority="high"
-    loading="eager"
-    class="w-auto h-auto dark:hidden"
-  />
-  <Image
-    src="/img/logo-w.svg"
-    alt="logo"
-    width="204"
-    height="50"
-    loading="eager"
-    class="hidden dark:block"
-  />
+<a href="/" class={`logo leading-none font-bold ${textClass}`} aria-label="Netto Pro Maroc Casablanca">
+  <span class="block text-xl tracking-tight">Netto Pro Maroc</span>
+  <span class="block text-sm font-semibold text-main">Casablanca</span>
 </a>

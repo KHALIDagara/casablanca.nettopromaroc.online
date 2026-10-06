@@ -10,32 +10,32 @@ import Logo from "./Logo.astro";
         <div>
           <Logo mode="dark" />
           <p class="mt-4">
-            Stay updated with our latest cleaning tips, service updates, and
-            helpful articles on maintaining a spotless home.
+            Nettoyage professionnel à Casablanca pour habitations, bureaux,
+            commerces, syndics et remises en état.
           </p>
         </div>
         <div class="grid grid-cols-2 gap-10">
           <nav class="grid gap-3">
-            <h3 class="text-xl font-semibold">Company</h3>
-            <a href="#" class="hover:underline hover:text-main">About Us</a>
+            <h3 class="text-xl font-semibold">Entreprise</h3>
+            <a href="/about" class="hover:underline hover:text-main">À propos</a>
             <a href="/service" class="hover:underline hover:text-main"
               >Services</a
             >
-            <a href="/team" class="hover:underline hover:text-main">Our Team</a>
+            <a href="/team" class="hover:underline hover:text-main">Équipe</a>
           </nav>
           <nav class="grid gap-3">
-            <h3 class="text-xl font-semibold">Know More</h3>
-            <a href="#" class="hover:underline hover:text-main">Support</a>
+            <h3 class="text-xl font-semibold">Informations</h3>
+            <a href="/contact" class="hover:underline hover:text-main">Contact</a>
             <a href="/policy" class="hover:underline hover:text-main"
-              >Privacy Policy</a
+              >Confidentialité</a
             >
             <a href="/terms" class="hover:underline hover:text-main"
-              >Terms & conditions</a
+              >Conditions</a
             >
           </nav>
         </div>
         <div class="grid gap-3">
-          <h3 class="text-xl font-semibold">Newsletter</h3>
+          <h3 class="text-xl font-semibold">Demande de devis</h3>
 
           <form
             action="/"
@@ -44,14 +44,14 @@ import Logo from "./Logo.astro";
           >
             <input
               type="text"
-              placeholder="Email Goes here"
+              placeholder="Votre email"
               class="input text-black dark:text-white w-full"
               name="subcscribe_email"
               id="subscribe-email"
             />
             <button
               class="btn bg-main border-main text-white rounded-lg hover:bg-green-600 lg:mr-auto shadow-none"
-              type="submit">Send</button
+              type="submit">Envoyer</button
             >
           </form>
         </div>
@@ -60,7 +60,7 @@ import Logo from "./Logo.astro";
   </div>
   <div class="footer-btm w-full">
     <div class="container text-center border-t border-white py-10">
-      &copy; {today.getFullYear()} “Procleaning” All Rights Received
+      &copy; {today.getFullYear()} Netto Pro Maroc Casablanca. Tous droits réservés.
     </div>
   </div>
 </footer>

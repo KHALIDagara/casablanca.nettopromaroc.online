@@ -18,7 +18,7 @@ const {
   category,
   relatedPosts = [],
   socials = false,
-  breadcrumbParent = "Blog",
+  breadcrumbParent = "Conseils",
 } = Astro.props;
 ---
 
@@ -27,7 +27,7 @@ const {
     <article class="post">
       <div class="breadcrumbs text-sm">
         <ul class="flex! flex-wrap">
-          <li><a href="/">Home</a></li>
+          <li><a href="/">Accueil</a></li>
           <li><a href="./">{breadcrumbParent}</a></li>
           <li>{title}</li>
         </ul>
@@ -38,11 +38,11 @@ const {
           {
             updatedDate && (
               <div class="last-updated-on">
-                Last updated on <FormattedDate date={updatedDate} />
+                Mis à jour le <FormattedDate date={updatedDate} />
               </div>
             )
           }
-          {author && `By ${author.name}`}
+          {author && `Par ${author.name}`}
           {
             category && (
               <a
@@ -123,7 +123,7 @@ const {
               )
             }
             <a href="./" class="btn btn-outline">
-              <Icon name="lucide:arrow-left" size={18} /> Go Back</a
+              <Icon name="lucide:arrow-left" size={18} /> Retour</a
             >
 
            
@@ -134,7 +134,7 @@ const {
       {
         relatedPosts.length > 0 && (
           <section class="mt-10">
-            <h2>Latest Post</h2>
+        <h2>Articles récents</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
               {relatedPosts.map((item) => (
                 <NewsCard {...item} />

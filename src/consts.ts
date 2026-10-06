@@ -1,30 +1,30 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const SITE_TITLE = 'ProCleaning';
-export const SITE_DESCRIPTION = 'Specialized, efficient, and thorough cleaning services';
+export const SITE_TITLE = 'Netto Pro Maroc Casablanca';
+export const SITE_DESCRIPTION = 'Services de nettoyage professionnel à Casablanca pour maisons, bureaux, commerces et remises en état.';
 
 
 export const NAV_MENU = [
     {
         url: "/",
-        title: "Home"
+        title: "Accueil"
     },
     {
-        url: "#",
-        title: "About us"
+        url: "/about",
+        title: "À propos"
     },
     {
         url: "/service",
-        title: "Service"
+        title: "Services"
     },
     {
         url: "/team",
-        title: "Team"
+        title: "Équipe"
     },
     {
         url: "/blog",
-        title: "Blog"
+        title: "Conseils"
     },
      {
         url: "/contact",
